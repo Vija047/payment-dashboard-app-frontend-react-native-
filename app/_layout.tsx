@@ -1,29 +1,65 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
+import React from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
+import colors from './utils/colors';
 
-import { useColorScheme } from '@/hooks/useColorScheme';
+import LoginScreen from './screens/LoginScreen';
+import RegisterScreen from './screens/RegisterScreen';
+import DashboardScreen from './screens/DashboardScreen';
+import TransactionListScreen from './screens/TransactionListScreen';
+import TransactionDetailsScreen from './screens/TransactionDetailsScreen';
+import AddPaymentScreen from './screens/AddPaymentScreen';
 
-export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
+const Stack = createStackNavigator();
 
-  if (!loaded) {
-    // Async font loading only occurs in development.
-    return null;
-  }
-
+export default function AppLayout() {
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <Stack.Navigator 
+      initialRouteName= "Login"
+  screenOptions = {{
+    headerStyle: {
+      backgroundColor: colors.primary,
+        },
+    headerTintColor: colors.white,
+      headerTitleStyle: {
+      fontWeight: 'bold',
+        fontSize: 18,
+        },
+  }
+}
+    >
+  <Stack.Screen 
+        name="Login"
+component = { LoginScreen }
+options = {{ headerShown: false }}
+      />
+  < Stack.Screen
+name = "Register"
+component = { RegisterScreen }
+options = {{ headerShown: false }}
+      />
+  < Stack.Screen
+name = "Dashboard"
+component = { DashboardScreen }
+options = {{
+  title: 'Payment Dashboard',
+    headerLeft: () => null,
+        }}
+      />
+  < Stack.Screen
+name = "TransactionList"
+component = { TransactionListScreen }
+options = {{ title: 'All Transactions' }}
+      />
+  < Stack.Screen
+name = "TransactionDetails"
+component = { TransactionDetailsScreen }
+options = {{ title: 'Transaction Details' }}
+      />
+  < Stack.Screen
+name = "AddPayment"
+component = { AddPaymentScreen }
+options = {{ title: 'New Payment' }}
+      />
+  </Stack.Navigator>
   );
 }

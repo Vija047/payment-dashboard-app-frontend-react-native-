@@ -1,50 +1,167 @@
-# Welcome to your Expo app 👋
+# 📲 Payment Dashboard App — Frontend (React Native)
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This is the **mobile-first Payment Management Dashboard** built with **React Native** (using Expo).  
+It connects to the NestJS backend to manage payments securely with JWT-based authentication.
 
-## Get started
+---
 
-1. Install dependencies
+## 🎯 **Features**
 
-   ```bash
-   npm install
-   ```
+✅ Secure login with JWT  
+✅ Store token securely (`expo-secure-store`)  
+✅ Dashboard with key payment metrics  
+✅ Interactive line chart for revenue trends  
+✅ Paginated & filterable transactions list  
+✅ Add new simulated payment  
+✅ Smooth navigation between screens
 
-2. Start the app
+---
 
-   ```bash
-   npx expo start
-   ```
+## 🧱 **Tech Stack**
 
-In the output, you'll find options to open the app in a
+- React Native (Expo)
+- React Navigation
+- Axios or Fetch for API calls
+- `expo-secure-store` for JWT
+- `react-native-chart-kit` for charts
+- TypeScript (recommended)
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+---
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## 📂 **Folder Structure**
 
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+/src
+├── screens/
+│   ├── LoginScreen.tsx
+│   ├── DashboardScreen.tsx
+│   ├── TransactionListScreen.tsx
+│   ├── TransactionDetailsScreen.tsx
+│   └── AddPaymentScreen.tsx
+├── services/
+│   └── api.ts
+├── components/
+│   └── TransactionCard.tsx
+├── utils/
+│   └── auth.ts
 
-## Learn more
+````
 
-To learn more about developing your project with Expo, look at the following resources:
+---
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## ⚙️ **Getting Started**
 
-## Join the community
+### ✅ 1. Clone the repo
 
-Join our community of developers creating universal apps.
+```bash
+git clone https://github.com/yourusername/payment-dashboard-frontend.git
+cd payment-dashboard-frontend
+````
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+### ✅ 2. Install dependencies
+
+```bash
+npm install
+# or
+yarn install
+```
+
+### ✅ 3. Add `.env`
+
+Create a `.env` file in the root and set your backend URL:
+
+```
+API_URL=http://<YOUR_BACKEND_URL>:3000
+```
+
+Update `api.ts` to use `API_URL`.
+
+---
+
+### ✅ 4. Start the app
+
+Run the Expo server:
+
+```bash
+npm start
+# or
+yarn start
+```
+
+Scan the QR code with Expo Go or run on an emulator.
+
+---
+
+## 🔐 **Authentication**
+
+* Uses `/auth/login` endpoint.
+* JWT stored securely with `expo-secure-store`.
+* Token is attached to all authenticated requests.
+
+---
+
+## 📊 **Charts**
+
+Revenue trends are visualized with `react-native-chart-kit`.
+
+---
+
+## 📑 **Sample Credentials**
+
+| Username | Password   |
+| -------- | ---------- |
+| `admin`  | `password` |
+
+---
+
+## 🖼️ **Screens**
+
+| Login                                  | Dashboard                               | Transactions                                      | Add Payment                                |
+| -------------------------------------- | --------------------------------------- | ------------------------------------------------- | ------------------------------------------ |
+| ![Login Screen](screenshots/login.png) | ![Dashboard](screenshots/dashboard.png) | ![Transaction List](screenshots/transactions.png) | ![Add Payment](screenshots/addpayment.png) |
+
+*(Replace with your actual screenshots)*
+
+---
+
+## 📌 **API Endpoints Used**
+
+| Method | Endpoint          | Description                    |
+| ------ | ----------------- | ------------------------------ |
+| `POST` | `/auth/login`     | Log in, receive JWT            |
+| `GET`  | `/payments/stats` | Fetch dashboard metrics        |
+| `GET`  | `/payments`       | List transactions with filters |
+| `POST` | `/payments`       | Add new payment                |
+| `GET`  | `/payments/:id`   | Get payment details            |
+
+---
+
+## 📌 **Tips**
+
+* Change `API_URL` to your local or deployed backend.
+* Make sure your backend CORS is configured properly.
+
+---
+
+## 👨‍💻 **Author**
+
+Built with ❤️ by [Your Name](https://github.com/yourusername)
+
+---
+
+## 📜 **License**
+
+This project is licensed under the MIT License.
+
+```
+
+---
+
+✅ **Next steps:**  
+- Replace `yourusername` with your GitHub username  
+- Add real screenshots to `/screenshots` folder  
+- Update your `api.ts` to use `API_URL` from `.env`  
+- Commit and push to your `client` repo  
+
+If you’d like, I can prepare the **backend `README.md`** or the actual `api.ts` boilerplate too — just say **“Yes, next!”** 🚀
